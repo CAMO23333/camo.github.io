@@ -14,7 +14,7 @@ let currentScene = 2;
 
 const $ = (selector) => document.querySelector(selector);
 const all = (selector) => [...document.querySelectorAll(selector)];
-const gifPath = (folder, scene) => `assets/gifs/${folder}/${scene}.gif`;
+const gifPath = (folder, scene) => `asset/gifs/${folder}/${scene}.gif`;
 
 const splitView = $("#splitView");
 const splitRange = $("#splitRange");
