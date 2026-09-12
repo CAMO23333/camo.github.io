@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="description" content="Anonymous project page for CAMO, a causal-role-aware motion-turbulence disentanglement framework for turbulent infrared video super-resolution.">
+  <meta name="theme-color" content="#ffffff">
+  <title>CAMO | Turbulent Infrared Video Super-Resolution</title>
+  <link rel="icon" type="image/svg+xml" href="asset/favicon.svg">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="#top">CAMO</a>
+    <nav aria-label="Primary navigation">
+      <a href="#results">Results</a>
+      <a href="#comparisons">Comparisons</a>
+      <a href="#method">Method</a>
+      <a href="#benchmarks">Benchmarks</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero page-width">
+      <p class="venue">Anonymous ICLR 2027 Submission</p>
+      <h1>When Motion Misleads</h1>
+      <p class="paper-title">Causal-Role-Aware Motion-Turbulence Disentanglement for Turbulent Infrared Video Super-Resolution</p>
+      <div class="paper-actions">
+        <a class="button primary" href="https://github.com/CAMO23333/CAMO" target="_blank" rel="noopener">Anonymous Code</a>
+      </div>
+
+      <figure class="teaser-figure">
+        <button class="figure-button" data-image="asset/figures/teaser.png" aria-label="Open the CAMO motivation figure">
+          <img src="asset/figures/teaser.png" alt="Motivation and overview of CAMO">
+        </button>
+        <figcaption>Turbulence-induced pseudo-motion can be mistaken for useful temporal correspondence. CAMO separates it from coherent scene motion and assigns each component a distinct role in restoration.</figcaption>
+      </figure>
+
+      <div class="motivation-grid">
+        <div class="motivation-copy">
+          <p class="section-label">Motivation</p>
+          <h2>Real motion helps; turbulence pseudo-motion corrupts.</h2>
+          <p>In open-air infrared videos, observed displacement mixes coherent object or camera motion with random refractive perturbations. Treating both as a single motion signal propagates distortion and destabilizes temporal reconstruction.</p>
+        </div>
+        <ol class="contribution-list">
+          <li><span>01</span><p><strong>Physics-grounded factorization.</strong> LMTD uses thermo-radiative motion coherence to separate mixed temporal dynamics into object-motion and turbulence components.</p></li>
+          <li><span>02</span><p><strong>Role-specific restoration.</strong> TCLR suppresses local turbulence perturbations, while MCTE exploits coherent motion for temporal detail enhancement.</p></li>
+          <li><span>03</span><p><strong>Reliability-guided generation.</strong> Motion reliability regulates one-step restoration to preserve constructive cues without amplifying uncertain pseudo-motion.</p></li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="section page-width" id="results">
+      <div class="section-heading compact">
+        <p class="section-label">Restoration results</p>
+        <h2>Recovering stable structure from turbulent infrared video</h2>
+        <p>Drag the divider to compare the turbulent low-resolution input with CAMO. Use the arrows to inspect different scenes.</p>
+      </div>
+
+      <div class="split-view" id="splitView">
+        <img id="oursSplit" class="split-base" src="asset/result/example-03.gif" alt="CAMO restored infrared video">
+        <div class="split-overlay" id="lrOverlay">
+          <img id="lrSplit" src="asset/input/example-03.gif" alt="Turbulent low-resolution infrared input">
+        </div>
+        <span class="split-label left">Turbulent LR</span>
+        <span class="split-label right">CAMO</span>
+        <div class="split-line" id="splitLine" aria-hidden="true"><span>&#8596;</span></div>
+        <input id="splitRange" class="split-range" type="range" min="5" max="95" value="50" aria-label="Adjust the input and CAMO comparison divider">
+      </div>
+      <div class="scene-navigation" aria-label="Change example">
+        <button class="arrow-button" data-scene-step="-1" aria-label="Previous example">&#8592;</button>
+        <span class="scene-count" id="resultCount">Example 3 / 5</span>
+        <button class="arrow-button" data-scene-step="1" aria-label="Next example">&#8594;</button>
+      </div>
+    </section>
+
+    <section class="section section-tint" id="comparisons">
+      <div class="page-width">
+        <div class="section-heading row-heading">
+          <div>
+            <p class="section-label">Method comparison</p>
+            <h2>Animated comparisons under the same degradation</h2>
+            <p>Compare temporal behavior against representative VSR and turbulence-mitigation baselines.</p>
+          </div>
+          <label class="method-select">Baseline
+            <select id="methodSelect" aria-label="Select a comparison method"></select>
+          </label>
+        </div>
+
+        <div class="gif-grid" aria-live="polite">
+          <figure><figcaption>Turbulent LR</figcaption><img id="comparisonLR" src="asset/input/example-03.gif" alt="Turbulent low-resolution input"></figure>
+          <figure><figcaption id="comparisonMethodName">DGAF-VSR</figcaption><img id="comparisonMethod" src="asset/baseline-dgaf-vsr/example-03.gif" alt="Selected baseline restoration"></figure>
+          <figure class="ours-panel"><figcaption>CAMO</figcaption><img id="comparisonOurs" src="asset/result/example-03.gif" alt="CAMO restoration"></figure>
+          <figure><figcaption>Ground Truth</figcaption><img id="comparisonGT" src="asset/reference/example-03.gif" alt="Ground-truth video"></figure>
+        </div>
+        <div class="scene-navigation comparison-navigation" aria-label="Change comparison example">
+          <button class="arrow-button" data-scene-step="-1" aria-label="Previous comparison example">&#8592;</button>
+          <span class="scene-count" id="comparisonCount">Example 3 / 5</span>
+          <button class="arrow-button" data-scene-step="1" aria-label="Next comparison example">&#8594;</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section page-width" id="efficiency">
+      <div class="efficiency-layout">
+        <figure class="plain-figure">
+          <button class="figure-button" data-image="asset/figures/efficiency.png" aria-label="Open the efficiency comparison">
+            <img src="asset/figures/efficiency.png" alt="FasterVQA versus inference speed comparison">
+          </button>
+        </figure>
+        <div class="efficiency-copy">
+          <p class="section-label">Efficiency</p>
+          <h2>High video quality without iterative sampling</h2>
+          <p>CAMO performs restoration in a single generative step and reaches <strong>2.32 FPS</strong> in the reported setting. It attains the highest FasterVQA score among the compared methods while remaining faster than the evaluated diffusion-based alternatives.</p>
+          <dl class="metric-row"><div><dt>2.32</dt><dd>FPS</dd></div><div><dt>1-step</dt><dd>Restoration</dd></div></dl>
+        </div>
+      </div>
+    </section>
+
+    <section class="section section-tint" id="method">
+      <div class="page-width">
+        <div class="section-heading compact">
+          <p class="section-label">Method</p>
+          <h2>Causal-role-aware motion-turbulence disentanglement</h2>
+          <p>CAMO first factorizes mixed temporal dynamics, then uses the resulting components at different stages of the one-step restoration pipeline.</p>
+        </div>
+        <figure class="paper-figure method-figure">
+          <button class="figure-button" data-image="asset/figures/pipeline.png" aria-label="Open the CAMO pipeline">
+            <img src="asset/figures/pipeline.png" alt="Overall CAMO restoration pipeline">
+          </button>
+          <figcaption><strong>Pipeline.</strong> LMTD separates coherent object motion from turbulence-induced residual motion. TCLR rectifies the degraded conditional latent, MCTE enhances temporally consistent details, and reliability guidance controls the influence of uncertain motion during velocity prediction.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section page-width" id="disentanglement">
+      <div class="section-heading compact">
+        <p class="section-label">Disentanglement analysis</p>
+        <h2>Separating structured motion from stochastic perturbations</h2>
+        <p>Across different scenes, the object-motion component preserves coherent structures and boundaries, whereas the turbulence component captures spatially irregular residual perturbations.</p>
+      </div>
+      <figure class="paper-figure">
+        <button class="figure-button" data-image="asset/figures/disentanglement.png" aria-label="Open the motion disentanglement visualization">
+          <img src="asset/figures/disentanglement.png" alt="Temporal differences and disentangled object and turbulence motion components">
+        </button>
+        <figcaption>Visualization of latent motion-turbulence disentanglement on three infrared video samples.</figcaption>
+      </figure>
+    </section>
+
+    <section class="section section-tint" id="benchmarks">
+      <div class="page-width">
+        <div class="section-heading compact">
+          <p class="section-label">Benchmark results</p>
+          <h2>Quantitative and qualitative comparisons</h2>
+          <p>CAMO is evaluated on FLIR-IVSR and M3FD using restoration fidelity, perceptual quality, and temporal quality metrics.</p>
+        </div>
+        <figure class="paper-figure quantitative-figure">
+          <button class="figure-button" data-image="asset/figures/quantitative.png" aria-label="Open the quantitative comparison table">
+            <img src="asset/figures/quantitative.png" alt="Quantitative comparison on FLIR-IVSR and M3FD">
+          </button>
+          <figcaption>Quantitative comparison with state-of-the-art video restoration methods.</figcaption>
+        </figure>
+        <figure class="paper-figure">
+          <button class="figure-button" data-image="asset/figures/qualitative.png" aria-label="Open the qualitative comparison">
+            <img src="asset/figures/qualitative.png" alt="Qualitative comparison on infrared video datasets">
+          </button>
+          <figcaption>Qualitative comparison under diverse turbulence intensities and scene content.</figcaption>
+        </figure>
+        <figure class="paper-figure temporal-figure">
+          <button class="figure-button" data-image="asset/figures/temporal.png" aria-label="Open the temporal profile comparison">
+            <img src="asset/figures/temporal.png" alt="Temporal profile comparison">
+          </button>
+          <figcaption>Temporal profiles demonstrate smoother and more continuous trajectories.</figcaption>
+        </figure>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="page-width footer-inner"><span>CAMO &middot; Anonymous ICLR 2027 submission</span><span>For research review only</span></div>
+  </footer>
+
+  <dialog id="imageDialog">
+    <button id="dialogClose" aria-label="Close enlarged figure">&#10005;</button>
+    <img id="dialogImage" alt="Enlarged research figure">
+  </dialog>
+  <script src="script.js"></script>
+</body>
+</html>
